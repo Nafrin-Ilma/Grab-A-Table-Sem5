@@ -1,0 +1,106 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
+
+<div class="container" style="font-family:Arial, Helvetica, sans-serif;color:darkslategray">
+    <div class="container-fluid">
+        <div class="row flex-nowrap bg-secondary bg-opacity-10 " >      
+            <div class="col-12 col-sm-5 col-md-9" style="display: flex; margin:0.5em;border:2px solid lightgray">
+                    <div>
+                    <div class="image-container" style="margin:0.3em">
+                      <img id="mainImg" src="<%= restaurant.ImageLinks[0] %>" class="product-detail-image" />
+                    </div>
+                     <div style="display:flex">
+                        
+                   <% var index = 2 %> 
+                        <%  for(let idx =0;idx < restaurant.ImageLinks.length; idx++ ){  %>         
+                    <div class="small-images-container">
+                        <img src="<%= restaurant.ImageLinks[idx]%>" class= "small-image"/>                   
+                    </div> 
+                    <%  } %> 
+                 
+                     </div>
+                    </div>      
+                    <div class="product-detail-desc my-5 mx-4">
+                        <h1><%=restaurant.Name%></h1>
+                        <p><%=restaurant.Description %></p>
+                        
+                        <div class="restaurant-detail-button-container">
+                            <a href="<%=restaurant.Menu%>" target="_blank">
+                                <div style="width:100%;" class="btn btn-lg btn-outline-secondary my-2">
+                                Menu
+                                </div>
+                            </a>
+                            <a href="/reservation/availability/<%=restaurant._id%>">
+                                <div style="width:100%;" class="btn btn-lg btn-secondary my-2">
+                                    Grab A Table
+                                </div>
+                            </a>
+                        </div>
+                        
+                      </div>            
+            </div>
+             <div class="sideBox">
+                <div class="hoursBox my-2 p-2">
+                    <div class="my-2 text-center">
+                        <b><i>HOURS OF OPERATION</i></b>
+                    </div>
+                    <table class="table table-sm small">
+                        <% Object.keys(restaurant.HoursOfOperations).forEach(function(day) { %>
+                        <tr>
+                            <td><%= day %></td>
+                            <% if (restaurant.HoursOfOperations[day].StartTime) { %>
+                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone:"UTC"}) %></td>
+                                <td>to</td>
+                            <% } %>
+                            <% if (restaurant.HoursOfOperations[day].EndTime) { %>
+                                <td><%= restaurant.HoursOfOperations[day].EndTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone:"UTC"}) %></td>
+                            <% } %>
+                        </tr>
+                        <% }) %> 
+                    </table>
+                </div>
+                <div class="contactBox my-2 p-2">
+                    <div style="text-align: center;">
+                        <b><i>CONTACT US</i></b>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td><i class="bi bi-telephone-fill"></i></td>
+                            <td><%= '(' + restaurant.Phone.substring(0,3) + ') ' + restaurant.Phone.substring(3,6) + '-' + restaurant.Phone.substring(6,10) %></td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-globe"></i></td>
+                            <td><a href="https://<%= restaurant.Website %>"><%=restaurant.Website%></a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="locationBox my-2 p-2">
+                    <div style="text-align: center;">
+                        <b><i>LOCATION</i></b>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td><i class="bi bi-geo-alt-fill"></i></td>
+                            <td><%=restaurant.Address%></td>
+                        </tr>
+                    </table>
+                </div>
+
+                
+             </div>
+             
+        </div>
+         
+    </div>
+
+</div>
+<script>                       
+    let smallImages = document.getElementsByClassName("small-image");
+    let mainImage = document.getElementById("mainImg");
+    for(let i =0;i < smallImages.length; i++) {
+        smallImages[i].onclick = function(){
+           mainImage.src = this.src;
+        }
+    } 
+</script>    
+

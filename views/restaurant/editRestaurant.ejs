@@ -1,0 +1,234 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbarVendor'); %>
+
+<div class="mt-4 mb-5 container grey-border">
+  <h1 class="my-3 text-center display-6 ">Restaurant Details</h1>
+  <form method="POST" class=" my-2 mx-4">
+    <div class="mb-3 mt-3">
+      <label for="name" class="form-label">Name of Restaurant:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Name"
+        name="Name"
+        placeholder="Enter Restaurant Name"
+        value="<%=restaurant.Name%>"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="comment">Description:</label>
+      <textarea
+        class="form-control"
+        rows="5"
+        id="Description"
+        name="Description"
+        value="<%=restaurant.Description%>"
+        required
+><%=restaurant.Description%></textarea>
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="website" class="form-label">Website:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="website"
+        placeholder="Enter Website"
+        name="Website"
+        value="<%=restaurant.Website%>"
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="address" class="form-label">Address:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Address"
+        placeholder="Enter Address"
+        name="Address"
+        value="<%=restaurant.Address%>"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="phone" class="form-label">Phone:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Phone"
+        placeholder="Enter Phone number"
+        name="Phone"
+        value="<%=restaurant.Phone%>"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="capacity" class="form-label">Capacity:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Capacity"
+        placeholder="Enter capacity"
+        name="Capacity"
+        value="<%=restaurant.Capacity%>"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      
+      <label for="CuisineTags" class="form-label">Cuisine:</label>
+      <fieldset>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Bar")){%>
+            <input type="checkbox" id="Bar" name="CuisineTags" value="Bar" checked>
+          <label for="Bar">Bar</label>
+          <%}else{%>
+            <input type="checkbox" id="Bar" name="CuisineTags" value="Bar" >
+            <label for="Bar">Bar</label>
+            <%}%>
+          
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Fast Food")){%>
+          <input type="checkbox" id="FastFood" name="CuisineTags" value="Fast Food" checked>
+          <label for="Fast Food">Fast Food</label>
+          <%}else{%>
+            <input type="checkbox" id="FastFood" name="CuisineTags" value="Fast Food">
+            <label for="Fast Food">Fast Food</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("French")){%>
+          <input type="checkbox" id="French" name="CuisineTags"value="French" checked>
+          <label for="French">French</label>
+          <%}else{%>
+            <input type="checkbox" id="French" name="CuisineTags"value="French">
+          <label for="French">French</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Hakka")){%>
+          <input type="checkbox" id="Hakka" name="CuisineTags"value="Hakka" checked>
+          <label for="Hakka">Hakka</label>
+          <%}else{%>
+            <input type="checkbox" id="Hakka" name="CuisineTags"value="Hakka">
+          <label for="Hakka">Hakka</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Indian")){%>
+          <input type="checkbox" id="Indian" name="CuisineTags"value="Indian" checked>
+          <label for="Indian">Indian</label>
+          <%}else{%>
+            <input type="checkbox" id="Indian" name="CuisineTags"value="Indian">
+          <label for="Indian">Indian</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Italian")){%>
+          <input type="checkbox" id="Italian" name="CuisineTags"value="Italian" checked>
+          <label for="Italian">Italian</label>
+          <%}else{%>
+            <input type="checkbox" id="Italian" name="CuisineTags"value="Italian">
+          <label for="Italian">Italian</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Thai")){%>
+          <input type="checkbox" id="Thai" name="CuisineTags"value="Thai" checked>
+          <label for="Thai">Thai</label>
+          <%}else{%>
+            <input type="checkbox" id="Thai" name="CuisineTags"value="Thai">
+            <label for="Thai">Thai</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Asian")){%>
+          <input type="checkbox" id="Asian" name="CuisineTags"value="Asian" checked>
+          <label for="Asian">Asian</label>
+          <%}else{%>
+            <input type="checkbox" id="Asian" name="CuisineTags"value="Asian">
+            <label for="Asian">Asian</label>
+            <%}%>
+        </div>
+    </fieldset>
+     
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="Hours" class="form-label">Hours of Operation:</label>
+      <table>
+    
+        <tbody>
+            <tr>
+                <td>Sunday</td>
+
+                <td><input id="appt-time" type="time" name="SunStartTime" value="<%=restaurant.HoursOfOperations.Sunday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="SunEndTime" value="<%=restaurant.HoursOfOperations.Sunday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Monday</td>
+                <td><input id="appt-time" type="time" name="MonStartTime" value="<%=restaurant.HoursOfOperations.Monday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="MonEndTime" value="<%=restaurant.HoursOfOperations.Monday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Tuesday</td>
+                <td><input id="appt-time" type="time" name="TueStartTime" value="<%=restaurant.HoursOfOperations.Tuesday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="TueEndTime" value="<%=restaurant.HoursOfOperations.Tuesday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Wednesday</td>
+                <td><input id="appt-time" type="time" name="WedStartTime" value="<%=restaurant.HoursOfOperations.Wednesday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="WedEndTime" value="<%=restaurant.HoursOfOperations.Wednesday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Thursday</td>
+                <td><input id="appt-time" type="time" name="ThuStartTime" value="<%=restaurant.HoursOfOperations.Thrusday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="ThuEndTime" value="<%=restaurant.HoursOfOperations.Thrusday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Friday</td>
+                <td><input id="appt-time" type="time" name="FriStartTime"  value="<%=restaurant.HoursOfOperations.Friday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="FriEndTime"  value="<%=restaurant.HoursOfOperations.Friday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Saturday</td>
+                <td><input id="appt-time" type="time" name="SatStartTime" value="<%=restaurant.HoursOfOperations.Saturday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="SatEndTime" value="<%=restaurant.HoursOfOperations.Saturday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+            </tr>
+        </tbody>
+    </table><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="capacity" class="form-label">Images:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ImageLinks"
+        placeholder="Enter links seperated by comma"
+        value="<%=restaurant.ImageLinks%>"
+        name="ImageLinks"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="capacity" class="form-label">Menu:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Menu"
+        placeholder="Enter link for menu"
+        value="<%=restaurant.Menu%>"
+        name="Menu"
+        required
+      /><span class="validity"></span>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Submit</button>
+    <a class="btn btn-outline-secondary" href="/reservations/list/<%= restaurant._id %>">
+      Return to Reservations
+    </a>
+  </form>
+</div>
+
+<%- include('../partials/footer'); %>
